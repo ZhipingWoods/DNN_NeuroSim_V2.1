@@ -14,8 +14,9 @@ def get10(batch_size, data_root='/tmp/public_dataset/pytorch', train=True, val=T
             datasets.CIFAR10(
                 root=data_root, train=True, download=True,
                 transform=transforms.Compose([
-                    transforms.Pad(4),
-                    transforms.RandomCrop(32),
+                    # transforms.Pad(4),
+                    # transforms.RandomCrop(32),  # for vgg8
+                    transforms.Resize((224, 224)),  # Resize to 224x224
                     transforms.RandomHorizontalFlip(),
                     transforms.ToTensor(),
                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
@@ -28,6 +29,7 @@ def get10(batch_size, data_root='/tmp/public_dataset/pytorch', train=True, val=T
             datasets.CIFAR10(
                 root=data_root, train=False, download=True,
                 transform=transforms.Compose([
+                    transforms.Resize((224, 224)),  # Resize to 224x224
                     transforms.ToTensor(),
                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
                 ])),
@@ -49,6 +51,7 @@ def get100(batch_size, data_root='/tmp/public_dataset/pytorch', train=True, val=
                 transform=transforms.Compose([
                     transforms.Pad(4),
                     transforms.RandomCrop(32),
+                    # transforms.Resize((224, 224)),  # Resize to 224x224
                     transforms.RandomHorizontalFlip(),
                     transforms.ToTensor(),
                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
@@ -61,6 +64,7 @@ def get100(batch_size, data_root='/tmp/public_dataset/pytorch', train=True, val=
             datasets.CIFAR100(
                 root=data_root, train=False, download=True,
                 transform=transforms.Compose([
+                    # transforms.Resize((224, 224)),  # Resize to 224x224
                     transforms.ToTensor(),
                     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
                 ])),
